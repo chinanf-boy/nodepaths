@@ -1,0 +1,10 @@
+{
+	"host": "/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath",
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath/test1.js": [
+		"./test/test3",
+		"path1"
+	],
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath/./test/test3.js": [
+		"./test2.js"
+	]
+}
