@@ -53,9 +53,10 @@ const readFilePromise = function readFilePromise(filePath) {
             let matchs = getMatch(data)
 
             LocalCount -= 1
-
+            // console.log(LocalCount)
             let filematchs = getFileName(matchs)
-            LocalCount += filematchs.length
+            // LocalCount += filematchs.length
+            // console.log(LocalCount)
             if (filematchs) {
                 LocalStore[filePath] = filematchs;
                 filematchs.forEach(x => {
@@ -73,20 +74,31 @@ const readFilePromise = function readFilePromise(filePath) {
     });
 }
 
+
+const timeout = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 const NodePath = async function (dirhost, filename) {
     let filePath = dirhost + '/' + filename;
-    do 
-        {
-            let conf = await readFilePromise(filePath)
-        }
-    while (LocalCount > 0)return LocalStore
+    LocalCount +=1
+    let conf = await readFilePromise(filePath)
+    // console.log(LocalCount) count readFile 次数
+    while(LocalCount > 0){
+        await timeout(2) // v1.1 add time-async
+    }
+    
+    
+    return LocalStore
 }
 
 const writeDataToFile = (data) => {
-    fs.writeFile('data.json', data, (err) => {
+    fs.writeFile('NodePathdata.json', data, (err) => {
         if (err) 
             throw err;
-        console.log('The file has been saved!');
+        console.log('The NodePathdata.json has been saved!');
     });
 }
 
