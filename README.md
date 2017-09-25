@@ -51,9 +51,25 @@ module.exports =  f1
 
 那么模块链路，看起来就像
 
+``` js
+node NodePath.js
+```
+
 ### test1 &lt;-----  /test/test3 &lt;------- /test/test2 &lt;-------- path
 
-少了个path,图个样式
+NodePathdata.json
+``` json
+{
+	"host": "/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath",
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath/test1.js": [
+		"./test/test3",
+		"path1"
+	],
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath/./test/test3.js": [
+		"./test2.js"
+	]
+}
+```
 
 | 文件 | 引用模块及文件 |
 | :--- | :--- |
