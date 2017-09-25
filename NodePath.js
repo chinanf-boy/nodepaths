@@ -1,6 +1,23 @@
 const path = require('path')
 const fs = require('fs')
 
+//+ cmd 
+// node NodePath.js filename.js
+
+let cmdarg = process.argv[2]
+
+const isEndJs = (match) => match.slice(match.length - 3, match.length) === '.js'
+
+if(!cmdarg){
+    throw Error("there is no index file\nlike:\n"+">node NodePath.js filename.js\n")
+}else{
+    cmdarg = isEndJs(cmdarg)?cmdarg:cmdarg+".js"
+}
+
+
+
+//
+
 let LocalStore = {
     'host': __dirname
 }
@@ -43,13 +60,12 @@ const isRquire = (match) => match.indexOf('require') >= 0
     ? true
     : false
 
-const isEndJs = (match) => match.slice(match.length - 3, match.length) === '.js'
 
 const readFilePromise = function readFilePromise(filePath) {
     return new Promise((resolve, reject) => {
         fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) 
-                reject(err);
+                throw Error(err)
             let matchs = getMatch(data)
 
             LocalCount -= 1
@@ -104,7 +120,7 @@ const writeDataToFile = (data) => {
 
 console.time('NodePath:time')
 // console.log(process.uptime()*1000)
-NodePath(__dirname, 'test1.js').then((data) => {
+NodePath(__dirname, cmdarg).then((data) => {
     console.timeEnd('NodePath:time');
     console.log(JSON.stringify(data))
     writeDataToFile(JSON.stringify(data, null, '\t'))

@@ -7,7 +7,7 @@
                 "name": "Launch Program",
                 "program": "${file}",
                 "args": [
-                    "text1.js"
+                    "test1"
                 ]
             }
         ]
