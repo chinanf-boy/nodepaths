@@ -1,85 +1,38 @@
-# fileNodePath 关注模块链路图
+ ## javascript 模块结构描述
 
-```js
-const path = require('path')
-```
-
-可以知道，来源模块有 _path  _这个内置函数
-
-### 目录
-
-* `test`
-  * `test2.js`
-* * `test3.js`
-* `test1.js`
-* `path1.js`
-
-_一样_
-
-```js
-const test = require(./test1.js)
-```
-
-> 例子-------- 以下都是 文件名是**绝对路径，代码是相对路径**
-
-* test1.js
-
-```js
-const floder = require('./test/test3')
-
-const path = require('path1')
-
-path()
-floder()
-```
-
-* /test/test3.js
-
-```js
-const test2 =  require('./test2.js')
-const path = require('path')
-module.exports =  test2
-```
-
-* /test/test2.js
-
-```js
-const f1 = () =>{
-    console.log('22222222')
-}
-const path = require('path')
-
-module.exports =  f1
-```
-
-那么模块链路，看起来就像
-
+基于 匹配 这两种模式
 ``` js
-node NodePath.js
+import React, {Component} from 'react';
+
+const path = require('path')
 ```
 
-### test1 &lt;-----  /test/test3 &lt;------- /test/test2 &lt;-------- path
+## 使用
 
+```
+node NodePath.js filename
+```
+仅限 ``js``后缀 文件
+
+生成一个
+
+```
 NodePathdata.json
-``` json
-{
-	"host": "/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath",
-	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath/test1.js": [
-		"./test/test3",
-		"path1"
-	],
-	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath/./test/test3.js": [
-		"./test2.js"`
-	]
-}
 ```
 
-| 文件 | 引用模块及文件 |
-| :--- | :--- |
-| test1 | /test/test3 , path1|
-| /test/test3 | /test/test2 |
-| /test/test2 |
+与 ``git`` 版本控制搭配 可看 模块变动。
 
-一般 ``path`` 之类 内置函数不会识别
+## 有关思考过程可以查看 Doc
 
+## 可以 clone 库
 
+> 运行
+
+```
+node NodePath.js test1
+```
+
+## 未来新增
+
+- 系统命令行直接调用
+- 相关BUg 自我修复和发现：P
