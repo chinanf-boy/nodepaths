@@ -69,16 +69,17 @@ NodePathdata.json
 		"path1"
 	],
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS/NodePath/./test/test3.js": [
-		"./test2.js"
+		"./test2.js"`
 	]
 }
 ```
 
 | 文件 | 引用模块及文件 |
 | :--- | :--- |
-| test1 | /test/test3 |
-| /test/test3 | /test/test2, path |
-| /test/test2 | path |
+| test1 | /test/test3 , path1|
+| /test/test3 | /test/test2 |
+| /test/test2 |
 
+一般 ``path`` 之类 内置函数不会识别
 
 
