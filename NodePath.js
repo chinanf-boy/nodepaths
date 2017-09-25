@@ -19,7 +19,7 @@ if(!cmdarg){
 //
 
 let LocalStore = {
-    'host': __dirname
+    'hostDir': path.dirname(path.join(process.cwd(), cmdarg))
 }
 
 let LocalCount = 0
@@ -50,7 +50,11 @@ const getFileName = (matchs) => {
         : false
 }
 
-const isLocalFunc = (filename) => filename.indexOf('.') >= 0 && filename.indexOf('/') >= 0
+// const isLocalFunc = (filename) => filename.indexOf('.') >= 0 && filename.indexOf('/') >= 0
+function isLocalFunc(fileAllPath) {
+    return fs.existsSync(fileAllPath)
+}
+
 
 // const isModuleFile = (Path)
 
@@ -61,9 +65,9 @@ const isRquire = (match) => match.indexOf('require') >= 0
     : false
 
 
-const readFilePromise = function readFilePromise(filePath) {
+const readFilePromise = function readFilePromise(fileAllPath) {
     return new Promise((resolve, reject) => {
-        fs.readFile(filePath, 'utf8', (err, data) => {
+        fs.readFile(fileAllPath, 'utf8', (err, data) => {
             if (err) 
                 throw Error(err)
             let matchs = getMatch(data)
@@ -74,13 +78,16 @@ const readFilePromise = function readFilePromise(filePath) {
             // LocalCount += filematchs.length
             // console.log(LocalCount)
             if (filematchs) {
-                LocalStore[filePath] = filematchs;
+                LocalStore[fileAllPath] = filematchs;
                 filematchs.forEach(x => {
+                    //不存在本目录，不需要递归
 
-                    if (isEndJs(x) && isLocalFunc(x)) {
-                        NodePath(getDirName(filePath), x)
-                    } else if (isLocalFunc(x)) {
-                        NodePath(getDirName(filePath), x + '.js')
+                    if (!isEndJs(x)) {
+                        x = x + '.js';
+                    }
+                    if (isLocalFunc(path.join(getDirName(fileAllPath), x))){
+                        
+                        NodePath(getDirName(fileAllPath), x)
                     }
                 })
             }
@@ -97,8 +104,8 @@ const timeout = (ms) => {
   });
 }
 
-const NodePath = async function (dirhost, filename) {
-    let filePath = dirhost + '/' + filename;
+const NodePath = async function (cmdDir, filearg) {
+    let filePath = path.join(cmdDir, filearg);
     LocalCount +=1
     let conf = await readFilePromise(filePath)
     // console.log(LocalCount) count readFile 次数
@@ -120,7 +127,7 @@ const writeDataToFile = (data) => {
 
 console.time('NodePath:time')
 // console.log(process.uptime()*1000)
-NodePath(__dirname, cmdarg).then((data) => {
+NodePath(process.cwd(), cmdarg).then((data) => {
     console.timeEnd('NodePath:time');
     console.log(JSON.stringify(data))
     writeDataToFile(JSON.stringify(data, null, '\t'))

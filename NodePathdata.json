@@ -1,10 +1,13 @@
 {
-	"host": "/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath",
+	"hostDir": "/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath",
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/test1.js": [
 		"./test/test3",
 		"path1"
 	],
-	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/./test/test3.js": [
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/test/test3.js": [
 		"./test2.js"
+	],
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/path1.js": [
+		"path"
 	]
 }
