@@ -43,14 +43,44 @@ const getFileName = (matchs) => {
             } else {
                 let localx = x
                     .split(' ')
-                    .filter(x => x != 'from' && x)
+                    .filter(x => x != 'from' && x).join('')
                 return localx.slice(1, localx.length - 1)
             }
         })
         : false
 }
 
-// const isLocalFunc = (filename) => filename.indexOf('.') >= 0 && filename.indexOf('/') >= 0
+const isLocalDir = (filename) => filename.indexOf('.') == 0 || filename.indexOf('/') >= 0
+
+const builtinLibs = [
+    'assert', 'async_hooks', 'buffer', 'child_process', 'cluster', 'crypto',
+    'dgram', 'dns', 'domain', 'events', 'fs', 'http', 'https', 'net',
+    'os', 'path', 'perf_hooks', 'punycode', 'querystring', 'readline', 'repl',
+    'stream', 'string_decoder', 'tls', 'tty', 'url', 'util', 'v8', 'vm', 'zlib','http2'
+  ];
+
+const isNativeModule = (filename) => {
+    let result = false;
+    if(isEndJs(filename)){
+        for (let i=0;i<builtinLibs.length;i++){
+            if(filename === builtinLibs[i]+'.js'){
+
+                result = true
+                break
+            }
+        }
+    }
+    else{
+        for (let i=0;i<builtinLibs.length;i++){
+            if(filename === builtinLibs[i]){
+                result = true
+                break
+            }
+        }
+    }
+    return result
+}
+
 function isLocalFunc(fileAllPath) {
     return fs.existsSync(fileAllPath)
 }
@@ -85,11 +115,29 @@ const readFilePromise = function readFilePromise(fileAllPath) {
                     if (!isEndJs(x)) {
                         x = x + '.js';
                     }
-                    if (isLocalFunc(path.join(getDirName(fileAllPath), x))){
-                        
-                        NodePath(getDirName(fileAllPath), x)
+                    if (isLocalDir(x)) {
+                        // isLocalDir 查看 是否 有 ./ 之类  本目录 
+                        //
+                        if (isLocalFunc(path.join(getDirName(fileAllPath), x))) {
+                            
+                            NodePath(getDirName(fileAllPath), x)
+                        }
                     }
-                })
+                    else if (!isNativeModule(x)){
+
+                        //isNativeModule 丑方法 验证是否原生
+                        // node 源代码 有个 https://github.com/nodejs/node/blob/master/lib/module.js#L24
+                        // const NativeModule = require('native_module');
+                        // https://github.com/nodejs/node/blob/master/lib/module.js#L461 应用 内置模块 查询
+                        //
+                        if (isLocalFunc(path.join(getDirName(fileAllPath), x))) {
+                            
+                            NodePath(getDirName(fileAllPath), x)
+                        }
+                    }
+
+                    
+                    })
             }
             resolve(': ' + JSON.stringify(filematchs));
 

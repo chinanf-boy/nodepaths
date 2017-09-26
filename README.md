@@ -32,7 +32,7 @@ NodePathdata.json
 > 运行
 
 ```
-node NodePath.js test1
+node NodePath.js demo/test1
 ```
 
 > 来达到测试的目的
