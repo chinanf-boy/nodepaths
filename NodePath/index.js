@@ -23,10 +23,11 @@ if(!getFileName){
 let hostdir = process.argv[1]
 let addFrom = process.argv[3]
 
+console.info(...require.cache[hostdir].children.map(x => x.filename))
+
 let missDir = [
-    require.resolve('./requireNodePath'),
     hostdir,
-    require.resolve('./writeDataToFile')
+    ...require.cache[hostdir].children.map(x => x.filename)
 ]
 
 console.time('NodePath:time')
