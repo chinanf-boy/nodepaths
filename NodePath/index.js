@@ -32,6 +32,7 @@ let missDir = [
 console.time('NodePath:time')
 
 if(addFrom === 'es5'){
+    console.error(';P no done')
     //  
 }else{
     let getFile = path.join(process.cwd(), getFileName)
