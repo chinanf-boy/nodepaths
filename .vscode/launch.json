@@ -5,6 +5,7 @@
                 "type": "node",
                 "request": "launch",
                 "name": "Launch Program",
+                "stopOnEntry": true,
                 "program": "${file}",
                 "args": [
                     "demo/test1"

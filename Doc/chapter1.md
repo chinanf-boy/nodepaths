@@ -18,6 +18,7 @@
 ## 路径
 
 node 中 `__dirname  代表 文件-绝对目录`
+``process.cwd()``代表 执行目录
 
 ```js
 console.log(__dirname)
@@ -26,7 +27,7 @@ console.log(__dirname)
 因为，文件引用的文件代码，使用的相对目录，这就需要，我们在查阅代码，有一个**文件目录位置**的**变量**
 
 ```js
-const main = function( dirname, filename){
+const main = function( process.cwd(), filename){
 // dirname 就是那个变量
 // do something 
 // .            穷尽
@@ -35,7 +36,7 @@ const main = function( dirname, filename){
 // 递归 
 }
 
-main( __dirname, 'test1.js')
+main( process.cwd(), 'test1.js')
 ```
 
 ### 条件

@@ -1,0 +1,5 @@
+{
+    "debug.openExplorerOnEnd": true,
+    "debug.inlineValues": true,
+    "debug.allowBreakpointsEverywhere": true
+}
