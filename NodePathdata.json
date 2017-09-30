@@ -2,14 +2,14 @@
 	"hostDir": "/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo",
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test1.js": [
 		"./test/test3",
-		"path1"
+		"./path1",
+		"./test2"
 	],
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test/test3.js": [
 		"./test2.js"
 	],
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/path1.js": [
-		"./path",
-		"path"
+		"./path"
 	],
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/path.js": [
 		"path"
