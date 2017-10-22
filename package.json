@@ -1,5 +1,5 @@
 {
-  "name": "nodepath",
+  "name": "nodepaths",
   "version": "1.0.0",
   "description": "output the path of module js folder",
   "main": "/NodePath/index.js",
@@ -8,14 +8,14 @@
     "try": "node NodePath/index.js demo/test1"
   },
   "bin": {
-    "nodepath": "./NodePath/index.js"
+    "nodepaths": "./NodePath/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chinanf-boy/NodePath.git"
   },
   "keywords": [
-    "nodepath",
+    "nodepaths",
     "module"
   ],
   "author": "yobrave",
