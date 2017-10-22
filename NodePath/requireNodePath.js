@@ -14,9 +14,11 @@ function requireNodePath( getFile, missDir ){
         )
                 
     // console.log(results)
-    R_results['host'] = path.dirname(results[0])
-    
+
     results.forEach(x => {
+        if(x.indexOf('node_modules/') >= 0){
+            return 
+        }
         let children = require.cache[x].children;
         if (children.length > 0){
             R_results[x] = children.map(child => path.relative(path.dirname(x), child.filename))
