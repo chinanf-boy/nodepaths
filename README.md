@@ -17,10 +17,11 @@ npm install -g nodepaths
 ```
 nodepaths filename
 ```
-仅限 ``js``后缀 文件
+仅限 ``js`` 文件，
 
 ### 生成一个
 
+在命令运行路径下
 ```
 NodePathdata.json
 ```
