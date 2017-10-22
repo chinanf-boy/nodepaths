@@ -5,7 +5,7 @@ const fs = require('fs')
 
 const requireNodePath = require('./requireNodePath')
 const writeDataToFile = require('./writeDataToFile')
-// const fromNodePath = require('./fromNodePath')
+const fromNodePath = require('./fromNodePath')
 
 const getMatch = (data) => data.match(/(require|from)([(\s]+)?(\'|\")[\S]+((\'|\")([\)])?)/g);
 const isEndJs = (match, endfile) => match.slice(match.length - 3, match.length) === endfile
@@ -14,21 +14,33 @@ function isLocalFunc(fileAllPath) {
      if(fs.existsSync(fileAllPath)){
         return true
      }else{
-         throw Error('no such file\n'+fileAllPath+'\n')
+        return false
      }
 }
 
 const putEndFile = (file, endfile) => {
-    if(isEndJs(file, endfile)) {
-        return file
+    if (endfile.length == 1){    
+        if(isEndJs(file, endfile)) {
+            return file
+        }
     }
+
     return file + endfile
 }
 
 // 获得参数
 let getFileName = process.argv[2]
 if(!getFileName){
-    throw Error("there is no index file\nlike:\n"+">node NodePath.js filename.js\n")
+    console.log(`Usage
+    $ nodepath [file-name] [es5]
+
+        es5 -> use in like "import react from 'react'" file module
+
+    Example:
+
+    $ NodePath filename
+    `)
+    return 
 }
 let hostdir = process.argv[1]
 let addFrom = process.argv[3]
@@ -42,9 +54,35 @@ let missDir = [
 
 console.time('NodePath:time')
 
-if(addFrom === 'es5'){
-    console.error(';P no done')
-    //  
+if (addFrom === 'es5') {
+
+    require('babel-register')
+    require(getFileName)
+
+    // console.log(process.uptime()*1000)
+    // let endfiles = ['.js', '.jsx']
+
+    // endfiles.forEach(
+    //     (endfile, index) => {
+    //     getFileName = putEndFile(getFileName, endfile)
+    //     let getFile = path.join(process.cwd(), getFileName)
+
+    //     if (isLocalFunc(getFile)) {
+
+    //         fromNodePath.NodePath(process.cwd(), getFileName).then((data) => {
+    //             console.log(data)
+    //             writeDataToFile.writeDataToFile(data)
+    //             // console.log(JSON.stringify(LocalStore))
+    //             console.timeEnd('NodePath:time');
+
+    //         })
+    //     }
+    //     else if((index + 1) == endfiles.length){
+    //          throw Error(getFile, ' -- 无法找到 js 和 jsx 后缀 文件')
+    //     }
+
+    // })
+
 }else{
 
     getFileName = putEndFile(getFileName, '.js')
@@ -55,8 +93,8 @@ if(addFrom === 'es5'){
         // console.log(Path_requireNodePath)
         console.log(R_result)
         writeDataToFile.writeDataToFile(R_result)
+        console.timeEnd('NodePath:time')
     }
 }
-console.timeEnd('NodePath:time')
 // 
 

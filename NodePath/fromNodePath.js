@@ -4,22 +4,10 @@ const fs = require('fs')
 //+ cmd 
 // node NodePath.js filename.js
 
-let cmdarg = process.argv[2]
-
-const isEndJs = (match) => match.slice(match.length - 3, match.length) === '.js'
-
-if(!cmdarg){
-    throw Error("there is no index file\nlike:\n"+">node NodePath.js filename.js\n")
-}else{
-    cmdarg = isEndJs(cmdarg)?cmdarg:cmdarg+".js"
-}
-
-
-
 //
 
 let LocalStore = {
-    'hostDir': path.dirname(path.join(process.cwd(), cmdarg))
+    
 }
 
 let LocalCount = 0
@@ -152,6 +140,7 @@ const timeout = (ms) => {
   });
 }
 
+
 const NodePath = async function (cmdDir, filearg) {
     let filePath = path.join(cmdDir, filearg);
     LocalCount +=1
@@ -161,24 +150,18 @@ const NodePath = async function (cmdDir, filearg) {
         await timeout(2) // v1.1 add time-async
     }
     
+    LocalStore['hostDir'] = path.dirname(path.join(process.cwd(), filearg))
     
     return LocalStore
 }
 
-const writeDataToFile = (data) => {
-    fs.writeFile('NodePathdata.json', data, (err) => {
-        if (err) 
-            throw err;
-        console.log('The NodePathdata.json has been saved!');
-    });
+module.exports = {
+    NodePath
 }
-
-console.time('NodePath:time')
-// console.log(process.uptime()*1000)
-NodePath(process.cwd(), cmdarg).then((data) => {
-    console.timeEnd('NodePath:time');
-    console.log(JSON.stringify(data))
-    writeDataToFile(JSON.stringify(data, null, '\t'))
-    // console.log(JSON.stringify(LocalStore))
-
-})
+// const writeDataToFile = (data) => {
+//     fs.writeFile('NodePathdata.json', data, (err) => {
+//         if (err) 
+//             throw err;
+//         console.log('The NodePathdata.json has been saved!');
+//     });
+// }
