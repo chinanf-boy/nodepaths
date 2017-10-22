@@ -1,5 +1,5 @@
 const path = require('path')
-function requireNodePath( getFile, missDir ){
+function requireNodePath( getFile ){
     const file1 = require(getFile)
     
     // console.log(require.cache);
@@ -7,16 +7,17 @@ function requireNodePath( getFile, missDir ){
     let R_results = {}
     
     let results;
-    results = Object.keys(require.cache).filter(x => 
-            {
-                return !missDir.find(value => value === x)
-            }
-        )
+    results = Object.keys(require.cache)
+    // .filter(x => 
+    //         {
+    //             return !missDir.find(value => value === x)
+    //         }
+    //     )
                 
     // console.log(results)
 
     results.forEach(x => {
-        if(x.indexOf('node_modules/') >= 0){
+        if(x.indexOf('/node_modules') >= 0){
             return 
         }
         let children = require.cache[x].children;

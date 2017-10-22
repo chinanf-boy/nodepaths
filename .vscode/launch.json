@@ -9,7 +9,7 @@
                 "program": "${file}",
                 "args": [
                     "./demo/test1.js",
-                    "es5"
+                    
                 ]
             }
         ]

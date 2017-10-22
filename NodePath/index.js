@@ -21,11 +21,18 @@ if(!getFileName){
 }
 let hostdir = process.argv[1]
 let addFrom = process.argv[3]
-
-let missDir = [
-    hostdir,
-    ...require.cache[hostdir].children.map(x => x.filename)
-]
+// let missDir;
+// if(hostdir.indexOf('node_modules') >= 0){
+//     missDir = [
+//         hostdir
+//     ]   
+// }
+// else {
+//     missDir = [
+//         hostdir,
+//         ...require.cache[hostdir].children.map(x => x.filename)
+//     ]
+// }
 
 console.time('NodePath:time')
 
@@ -34,14 +41,14 @@ let getFile = path.join(process.cwd(), getFileName)
 if (addFrom === 'es5') {
 
     require('babel-register')
-    let R_result = requireNodePath.requireNodePath( getFile, missDir)
+    let R_result = requireNodePath.requireNodePath( getFile )
 
 
     console.log(R_result)
     writeDataToFile.writeDataToFile(R_result)
     console.timeEnd('NodePath:time')
 }else{
-        let R_result = requireNodePath.requireNodePath( getFile, missDir)
+        let R_result = requireNodePath.requireNodePath( getFile )
         
 
         console.log(R_result)

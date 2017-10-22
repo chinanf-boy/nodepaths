@@ -1,4 +1,11 @@
 {
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/NodePath/index.js": [
+		"requireNodePath.js",
+		"writeDataToFile.js"
+	],
+	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/NodePath/requireNodePath.js": [
+		"../demo/test1.js"
+	],
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test1.js": [
 		"test/test3.js",
 		"path1.js",
