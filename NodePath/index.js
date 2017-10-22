@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+'use script'
 const path = require('path')
 const fs = require('fs')
 
