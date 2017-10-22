@@ -1,7 +1,6 @@
-const path = require('./path')
-
+const path = require('path')
 const f1 = () =>{
-    console.log('22222222')
 }
+console.log('./path1.js')
 
 module.exports =  f1

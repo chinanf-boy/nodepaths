@@ -2,9 +2,10 @@
   "name": "nodepath",
   "version": "1.0.0",
   "description": "output the path of module js folder",
-  "main": "index.js",
+  "main": "/NodePath/index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava tests/",
+    "try": "node NodePath/index.js demo/test1"
   },
   "repository": {
     "type": "git",

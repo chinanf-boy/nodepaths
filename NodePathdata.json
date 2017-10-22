@@ -1,16 +1,14 @@
 {
+	"host": "/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo",
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test1.js": [
-		"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test/test3.js",
-		"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/path1.js",
-		"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test2/index.js"
+		"test/test3.js",
+		"path1.js",
+		"test2/index.js"
 	],
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test/test3.js": [
-		"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test/test2.js"
-	],
-	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/path1.js": [
-		"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/path.js"
+		"test2.js"
 	],
 	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test2/index.js": [
-		"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/demo/test2/test4.js"
+		"test4.js"
 	]
 }

@@ -12,7 +12,7 @@ const path = require('path')
 >运行
 
 ```
-node NodePath.js filename
+NodePath filename
 ```
 仅限 ``js``后缀 文件
 
@@ -32,7 +32,7 @@ NodePathdata.json
 > 运行
 
 ```
-node NodePath.js demo/test1
+node NodePath/index.js demo/test1
 ```
 
 > 来达到测试的目的

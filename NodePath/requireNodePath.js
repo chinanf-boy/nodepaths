@@ -1,3 +1,4 @@
+const path = require('path')
 function requireNodePath( getFile, missDir ){
     const file1 = require(getFile)
     
@@ -13,11 +14,12 @@ function requireNodePath( getFile, missDir ){
         )
                 
     // console.log(results)
+    R_results['host'] = path.dirname(results[0])
     
     results.forEach(x => {
         let children = require.cache[x].children;
         if (children.length > 0){
-            R_results[x] = children.map(x => x.filename);
+            R_results[x] = children.map(child => path.relative(path.dirname(x), child.filename))
         }
     })
     

@@ -8,6 +8,7 @@ const writeDataToFile = require('./writeDataToFile')
 // const fromNodePath = require('./fromNodePath')
 
 const getMatch = (data) => data.match(/(require|from)([(\s]+)?(\'|\")[\S]+((\'|\")([\)])?)/g);
+const isEndJs = (match, endfile) => match.slice(match.length - 3, match.length) === endfile
 
 function isLocalFunc(fileAllPath) {
      if(fs.existsSync(fileAllPath)){
@@ -15,6 +16,13 @@ function isLocalFunc(fileAllPath) {
      }else{
          throw Error('no such file\n'+fileAllPath+'\n')
      }
+}
+
+const putEndFile = (file, endfile) => {
+    if(isEndJs(file, endfile)) {
+        return file
+    }
+    return file + endfile
 }
 
 // 获得参数
@@ -38,6 +46,9 @@ if(addFrom === 'es5'){
     console.error(';P no done')
     //  
 }else{
+
+    getFileName = putEndFile(getFileName, '.js')
+
     let getFile = path.join(process.cwd(), getFileName)
     if(isLocalFunc(getFile)){
         let R_result = requireNodePath.requireNodePath( getFile, missDir)
