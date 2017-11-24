@@ -5,7 +5,7 @@
   "main": "/NodePath/index.js",
   "scripts": {
     "test": "ava tests/",
-    "try": "node NodePath/index.js demo/test1"
+    "demo": "node NodePath/index.js demo/test1.js"
   },
   "bin": {
     "nodepath": "./NodePath/index.js"

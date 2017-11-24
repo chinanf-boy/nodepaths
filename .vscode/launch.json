@@ -8,8 +8,7 @@
                 "stopOnEntry": true,
                 "program": "${file}",
                 "args": [
-                    "./demo/test1.js",
-                    "es5"
+                    "./demo/test1.js"
                 ]
             }
         ]
