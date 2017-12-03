@@ -5,7 +5,8 @@
   "main": "/NodePath/index.js",
   "scripts": {
     "test": "ava tests/",
-    "demo": "node NodePath/index.js demo/test1.js"
+    "demo": "node NodePath/index.js demo/test1.js",
+    "apidoc": "jsdoc -R README.md -P package.json -t node_modules/minami NodePath"
   },
   "bin": {
     "nodepath": "./NodePath/index.js"
@@ -26,5 +27,8 @@
   "homepage": "https://github.com/chinanf-boy/NodePath#readme",
   "dependencies": {
     "babel-register": "^6.26.0"
+  },
+  "devDependencies": {
+    "minami": "^1.2.3"
   }
 }
