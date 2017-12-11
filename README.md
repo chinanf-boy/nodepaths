@@ -22,6 +22,7 @@ nodepaths filename
 ### 生成一个
 
 在命令运行路径下
+
 ```
 NodePathdata.json
 ```
