@@ -1,6 +1,6 @@
 {
   "name": "nodepath",
-  "version": "1.0.0-canary.0",
+  "version": "1.0.0",
   "description": "output the path of module js folder",
   "main": "/NodePath/index.js",
   "scripts": {
