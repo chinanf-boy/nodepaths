@@ -9,15 +9,19 @@ const path = require('path')
 
 ## 使用
 
+```
+npm install -g nodepaths
+```
 >运行
 
 ```
-NodePath filename
+nodepaths filename
 ```
-仅限 ``js``后缀 文件
+仅限 ``js`` 文件，
 
 ### 生成一个
 
+在命令运行路径下
 
 ```
 NodePathdata.json
@@ -38,12 +42,18 @@ node NodePath/index.js demo/test1
 
 > 来达到测试的目的
 
-
-## 未来新增
-
 - 系统命令行直接调用
 
-- 相关BUg 自我修复和发现：P
+- ``react`` document issue
+
+```
+因为 document 在 node 没有定义 所以 
+
+src/index.js 中
+
+render部分 请注释 以下
+
+```
 
 
 ## 抱歉

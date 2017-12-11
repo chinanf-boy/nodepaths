@@ -1,6 +1,6 @@
 {
-  "name": "nodepath",
-  "version": "1.0.0",
+  "name": "nodepaths",
+  "version": "1.1.1-canary.0",
   "description": "output the path of module js folder",
   "main": "/NodePath/index.js",
   "scripts": {
@@ -9,14 +9,14 @@
     "apidoc": "jsdoc -R README.md -P package.json -t node_modules/minami NodePath"
   },
   "bin": {
-    "nodepath": "./NodePath/index.js"
+    "nodepaths": "./NodePath/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chinanf-boy/NodePath.git"
   },
   "keywords": [
-    "nodepath",
+    "nodepaths",
     "module"
   ],
   "author": "yobrave",
