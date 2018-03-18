@@ -17,7 +17,7 @@ if(!getFileName){
 
     $ NodePath filename
     `)
-    return 
+    process.exit(0)
 }
 let hostdir = process.argv[1]
 let addFrom = process.argv[3]
