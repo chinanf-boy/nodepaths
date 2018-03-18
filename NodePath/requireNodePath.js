@@ -1,20 +1,17 @@
 const path = require('path')
+/**
+ * @description 从文件中-require,获取缓存
+ * @param {String} getFile 
+ * @returns {Array}
+ */
 function requireNodePath( getFile ){
     const file1 = require(getFile)
-    
-    // console.log(require.cache);
+
     
     let R_results = {}
     
     let results;
     results = Object.keys(require.cache)
-    // .filter(x => 
-    //         {
-    //             return !missDir.find(value => value === x)
-    //         }
-    //     )
-                
-    // console.log(results)
 
     results.forEach(x => {
         if(x.indexOf('/node_modules') >= 0){

@@ -3,8 +3,8 @@
 const path = require('path')
 const fs = require('fs')
 
-const requireNodePath = require('./requireNodePath')
-const writeDataToFile = require('./writeDataToFile')
+const {requireNodePath} = require('./requireNodePath')
+const {writeDataToFile} = require('./writeDataToFile')
 
 let getFileName = process.argv[2]
 if(!getFileName){
@@ -21,18 +21,12 @@ if(!getFileName){
 }
 let hostdir = process.argv[1]
 let addFrom = process.argv[3]
-// let missDir;
-// if(hostdir.indexOf('node_modules') >= 0){
-//     missDir = [
-//         hostdir
-//     ]   
-// }
-// else {
-//     missDir = [
-//         hostdir,
-//         ...require.cache[hostdir].children.map(x => x.filename)
-//     ]
-// }
+
+// *** Fix cwd node_modules
+const cwdModule = path.join(process.cwd(), "node_modules")
+module.paths.push(process.cwd())
+module.paths.push(cwdModule)
+// 
 
 console.time('NodePath:time')
 
@@ -41,18 +35,19 @@ let getFile = path.join(process.cwd(), getFileName)
 if (addFrom === 'es5') {
 
     require('babel-register')
-    let R_result = requireNodePath.requireNodePath( getFile )
 
+    let R_result = requireNodePath( getFile )
 
+    require('./test.js')
     console.log(R_result)
-    writeDataToFile.writeDataToFile(R_result)
+    writeDataToFile(R_result)
     console.timeEnd('NodePath:time')
 }else{
-        let R_result = requireNodePath.requireNodePath( getFile )
+        let R_result = requireNodePath( getFile )
         
 
         console.log(R_result)
-        writeDataToFile.writeDataToFile(R_result)
+        writeDataToFile(R_result)
         console.timeEnd('NodePath:time')
     
 }
