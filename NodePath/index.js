@@ -34,11 +34,12 @@ let getFile = path.join(process.cwd(), getFileName)
 
 if (addFrom === 'es5') {
 
-    require('babel-register')
+    require('babel-register')({
+        "presets": ["stage-2","react","es2015"]
+    })
 
     let R_result = requireNodePath( getFile )
 
-    require('./test.js')
     console.log(R_result)
     writeDataToFile(R_result)
     console.timeEnd('NodePath:time')
