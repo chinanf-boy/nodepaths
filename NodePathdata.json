@@ -1,11 +1,4 @@
 {
-	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/NodePath/index.js": [
-		"requireNodePath.js",
-		"writeDataToFile.js"
-	],
-	"/Users/lizhenyong/Desktop/JSJSJSJSJSJJSJS——project/NodePath/NodePath/requireNodePath.js": [
-		"../../../Explain/js-explain/node-explain/ava-explain/ava/lib/cli.js"
-	],
 	"/Users/lizhenyong/Desktop/Explain/js-explain/node-explain/ava-explain/ava/lib/cli.js": [
 		"../node_modules/update-notifier/index.js",
 		"../node_modules/figures/index.js",
