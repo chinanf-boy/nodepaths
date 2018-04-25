@@ -1,6 +1,6 @@
  ## javascript 模块结构描述
 
-基于 匹配 这两种模式
+基于 匹配 这两种模式 
 ``` js
 import React, {Component} from 'react';
 
