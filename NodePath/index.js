@@ -26,11 +26,14 @@ let addFrom = process.argv[3]
 const cwdModule = path.join(process.cwd(), "node_modules")
 module.paths.push(process.cwd())
 module.paths.push(cwdModule)
+module.paths.push(path.dirname(getFileName))
+
+
 // 
 
 console.time('NodePath:time')
 
-let getFile = path.join(process.cwd(), getFileName)
+let getFile = path.resolve(process.cwd(), getFileName)
 
 if (addFrom === 'es5') {
 
