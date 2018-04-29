@@ -3,6 +3,8 @@
 'use script'
 const path = require('path')
 const fs = require('fs')
+const { setO } = require('./work-options')
+
 
 const {requireNodePath} = require('./requireNodePath')
 const {writeDataToFile} = require('./writeDataToFile')
@@ -10,9 +12,11 @@ const {writeDataToFile} = require('./writeDataToFile')
 let getFileName = process.argv[2]
 if(!getFileName){
     console.log(`Usage
-    $ nodepath [file-name] [es5]
+    $ nodepath [file-name] [options]
 
-        es5 -> use in like "import react from 'react'" file module
+    - options
+        
+        -O -> 输出目录 { process.cwd } 
 
     Example:
 
@@ -20,8 +24,16 @@ if(!getFileName){
     `)
     process.exit(0)
 }
-let hostdir = process.argv[1]
-let addFrom = process.argv[3]
+// Output
+let index
+process.argv.forEach((x, i) =>{
+    if(x == '-O')index = i
+})
+
+let Out = process.argv[index+1]
+setO(path.resolve(process.cwd(), Out))
+
+// Put node_modules to module.paths
 let cwd = path.resolve(process.cwd(),getFileName)
 let Ps = []
 
@@ -32,10 +44,12 @@ while(cwd !== '/'){
 }
 Ps.forEach(ps => module.paths.unshift(ps))
 
+// 计算
 console.time('NodePath:time')
 
 let filePath = path.resolve(process.cwd(), getFileName)
 
+// 请求·
 let results = await requireNodePath(filePath)
 
 console.log(results)
