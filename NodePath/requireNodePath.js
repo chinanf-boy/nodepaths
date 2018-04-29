@@ -1,27 +1,27 @@
 const path = require('path')
+const readFile = require('./readFile')
+const matchModule = require('./match-module')
+
 /**
  * @description 从文件中-require,获取缓存
  * @param {String} getFile 
  * @returns {Array}
  */
-function requireNodePath( getFile ){
-    const file1 = require(getFile)
+async function requireNodePath( filePath ){
+
+    let match = true
+
+    while(match){
+        const fileData = await readFile(filePath)
+
+        match = matchModule(fileData)
+
+        match = null
+    }
 
     
     let R_results = {}
     
-    let results;
-    results = Object.keys(require.cache)
-
-    results.forEach(x => {
-        if(x.indexOf('/node_modules') >= 0){
-            return 
-        }
-        let children = require.cache[x].children;
-        if (children.length > 0){
-            R_results[x] = children.map(child => path.relative(path.dirname(x), child.filename))
-        }
-    })
     
     return R_results
 }

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+(async function hello(){
 'use script'
 const path = require('path')
 const fs = require('fs')
@@ -21,38 +22,18 @@ if(!getFileName){
 }
 let hostdir = process.argv[1]
 let addFrom = process.argv[3]
+let cwd = path.join(process.cwd(),getFileName)
 
-// *** Fix cwd node_modules
-const cwdModule = path.join(process.cwd(), "node_modules")
-module.paths.push(process.cwd())
-module.paths.push(cwdModule)
-module.paths.push(path.dirname(getFileName))
-
-
-// 
+while(cwd !== '/'){
+    let cwdModule = path.join(path.dirname(cwd),'node_modules')
+    module.paths.unshift(cwdModule)
+    cwd = path.dirname(cwdModule)
+}
 
 console.time('NodePath:time')
 
-let getFile = path.resolve(process.cwd(), getFileName)
+let filePath = path.join(process.cwd(), getFileName)
 
-if (addFrom === 'es5') {
+await requireNodePath(filePath)
 
-    require('babel-register')({
-        "presets": ["stage-2","react","es2015"]
-    })
-
-    let R_result = requireNodePath( getFile )
-
-    console.log(R_result)
-    writeDataToFile(R_result)
-    console.timeEnd('NodePath:time')
-}else{
-        let R_result = requireNodePath( getFile )
-        
-
-        console.log(R_result)
-        writeDataToFile(R_result)
-        console.timeEnd('NodePath:time')
-    
-}
-
+})()
