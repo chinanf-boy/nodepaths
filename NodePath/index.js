@@ -22,18 +22,25 @@ if(!getFileName){
 }
 let hostdir = process.argv[1]
 let addFrom = process.argv[3]
-let cwd = path.join(process.cwd(),getFileName)
+let cwd = path.resolve(process.cwd(),getFileName)
+let Ps = []
 
 while(cwd !== '/'){
     let cwdModule = path.join(path.dirname(cwd),'node_modules')
-    module.paths.unshift(cwdModule)
+    Ps.unshift(cwdModule)
     cwd = path.dirname(cwdModule)
 }
+Ps.forEach(ps => module.paths.unshift(ps))
 
 console.time('NodePath:time')
 
-let filePath = path.join(process.cwd(), getFileName)
+let filePath = path.resolve(process.cwd(), getFileName)
 
-await requireNodePath(filePath)
+let results = await requireNodePath(filePath)
+
+console.log(results)
+
+writeDataToFile(results)
+
 
 })()

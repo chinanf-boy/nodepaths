@@ -2,7 +2,7 @@ const path = require('path')
 const readline = require('readline')
 
 const Ms = [
-    /^const/g
+    /(require|from )([(\s]+)?(\'|\")[\S]+((\'|\")([\)])?)/g
 ]
 
 /**
@@ -13,13 +13,14 @@ function matchModule( fileData ){
 
     let matchName = []
     let fDs = fileData.split('\n')
-    Ms.forEach(m =>{
-        fDs.forEach(data =>{
-            matchName.concat(m.exec(data))
-        })
+    
+    fDs.forEach(data =>{
 
+       data && Ms.forEach(m =>{
+        data.match(m) && (matchName = matchName.concat(data.match(m)))
+       })
     })
-    console.log(matchName)
+    
 
     return matchName
 }

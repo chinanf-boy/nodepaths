@@ -27,6 +27,7 @@
   "homepage": "https://github.com/chinanf-boy/NodePath#readme",
   "dependencies": {
     "babel-register": "^6.26.0",
+    "globby": "^8.0.1",
     "mz": "^2.7.0"
   },
   "devDependencies": {
