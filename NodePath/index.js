@@ -30,9 +30,9 @@ process.argv.forEach((x, i) =>{
     if(x == '-O')index = i
 })
 
-let Out = process.argv[index+1]
-setO(path.resolve(process.cwd(), Out))
-
+if(index && process.argv[index+1]){
+    setO(path.resolve(process.cwd(), process.argv[index+1]))
+}
 // Put node_modules to module.paths
 let cwd = path.resolve(process.cwd(),getFileName)
 let Ps = []
