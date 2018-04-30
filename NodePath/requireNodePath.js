@@ -8,7 +8,7 @@ const NATIVE_ERROR = 'native lib'
 /**
  * @description 从文件中-require,获取缓存
  * @param {String} getFile 
- * @returns {Array}
+ * @returns {Object}
  */
 async function requireNodePath( filePath ){
     
@@ -90,6 +90,4 @@ const hasLocal = (str) =>{
     return str.indexOf('.') >= 0
 }
 
-module.exports = {
-    requireNodePath
-}
+module.exports = requireNodePath

@@ -6,7 +6,7 @@ const fs = require('fs')
 const { setO } = require('./work-options')
 
 
-const {requireNodePath} = require('./requireNodePath')
+const requireNodePath= require('./requireNodePath')
 const {writeDataToFile} = require('./writeDataToFile')
 
 let getFileName = process.argv[2]
