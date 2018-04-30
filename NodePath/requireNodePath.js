@@ -1,5 +1,6 @@
 const path = require('path')
 const globby = require('globby');
+const relative = require('relative');
 const readFile = require('./readFile')
 const matchModule = require('./match-module')
 
@@ -43,13 +44,16 @@ async function requireNodePath( filePath ){
                     if(!hasLocal(m))throw new Error(NATIVE_ERROR)
 
                     AbsPath = require.resolve(AbsPath)
-                    
+
+                    if(AbsPath === fileP){
+                        return 
+                    }
                 }catch(err){
                     let AbsPathFile = null
                     // globby 查询有没有相关文件
                     if(err.message !== NATIVE_ERROR){      
                         AbsPathFile = await globby(AbsPath+'.*').catch(err =>{
-                        console.error(err)
+                        console.error("Error ->"+err)
                         })
                     }
                     if(AbsPathFile !== null){
