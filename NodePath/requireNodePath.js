@@ -1,6 +1,5 @@
 const path = require('path')
 const globby = require('globby');
-const relative = require('relative');
 const readFile = require('./readFile')
 const matchModule = require('./match-module')
 
