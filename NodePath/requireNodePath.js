@@ -17,7 +17,7 @@ async function requireNodePath( filePath ){
 
     async function Around(fileP){
 
-        if(fileP.indexOf(NODE_MODULES) >= 0) return
+        if(!fileP || fileP.indexOf(NODE_MODULES) >= 0) return
         
 
         let matchs = true
