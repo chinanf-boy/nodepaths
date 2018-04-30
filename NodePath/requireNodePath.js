@@ -27,7 +27,9 @@ async function requireNodePath( filePath ){
             const fileData = await readFile(fileP).catch(err =>console.error(err))
             
             matchs = matchModule(fileData)
-            
+
+            if(matchs.length === 0)return
+
             R_results[fileP] = []
 
             for(let i in matchs){
@@ -83,9 +85,12 @@ const getF = (str) =>{
         return str.slice(9, -2)
     }
     // import vue from 'vue'
-    return str.split(' ').filter(x => x && x!='from').join().slice(1, -1)
+    let fM = str.split(' ').filter(x => x && x!='from' && x!=';').join()
+    if(fM.endsWith(';')){
+        return fM.slice(1, -2)
+    }
+    return fM.slice(1, -1)
 }
-
 const hasLocal = (str) =>{
     return str.indexOf('.') >= 0
 }

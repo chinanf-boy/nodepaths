@@ -2,7 +2,8 @@ const path = require('path')
 const readline = require('readline')
 
 const Ms = [
-    /(require|from )([(\s]+)?(\'|\")[\S]+((\'|\")([\)])?)/g
+    /(require\()(\'|\")[\S]+((\'|\")([\)])+)/g,
+    /(from)([\s]+)?(\'|\")[\S]+((\'|\")([^\S])?([;])?)/g
 ]
 
 /**
