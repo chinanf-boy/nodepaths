@@ -7,8 +7,8 @@ const NODE_MODULES = 'node_modules'
 const NATIVE_ERROR = 'native lib'
 /**
  * @description 从文件中-require,获取缓存
- * @param {String} getFile 
- * @returns {Object}
+ * @param {String} filePath 
+ * @returns {Promise<Object>}
  */
 async function requireNodePath( filePath ){
     

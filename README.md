@@ -5,9 +5,9 @@
 
 基于 匹配 这两种模式 
 ``` js
-import React, {Component} from 'react';
+import React, {Component} from 'react'; // > react
 
-const path = require('path')
+const path = require('path') // > path
 ```
 
 ## 使用
@@ -18,7 +18,7 @@ npm install -g nodepaths
 >运行
 
 ```
-nodepaths filename -O [输出目录]
+nodepaths [filename]/[Directory] -O [输出目录]
 ```
 
 ### 生成一个

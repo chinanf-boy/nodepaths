@@ -5,8 +5,8 @@ const path = require('path')
 const fs = require('fs')
 const { setO } = require('./work-options')
 
+const nodePaths = require('./nodePaths')
 
-const requireNodePath= require('./requireNodePath')
 const {writeDataToFile} = require('./writeDataToFile')
 
 let getFileName = process.argv[2]
@@ -47,10 +47,10 @@ Ps.forEach(ps => module.paths.unshift(ps))
 // 计算
 console.time('NodePath:time')
 
-let filePath = path.resolve(process.cwd(), getFileName)
 
+let filePath = path.resolve(process.cwd(), getFileName)
 // 请求·
-let results = await requireNodePath(filePath)
+let results = await nodePaths(filePath)
 
 console.log(results)
 
