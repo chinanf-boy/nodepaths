@@ -4,7 +4,7 @@
   "description": "output the path of module js folder",
   "main": "./NodePath/nodePaths.js",
   "scripts": {
-    "test": "ava tests/ -s",
+    "test": "nyc ava tests/ -s",
     "demo": "node NodePath/index.js demo/",
     "pub": "npm version patch && npm publish && git push && git push --tags",
     "apidoc": "jsdoc -R README.md -P package.json -t node_modules/minami NodePath"
@@ -34,6 +34,8 @@
   },
   "devDependencies": {
     "ava": "^0.25.0",
-    "minami": "^1.2.3"
+    "codecov": "^3.0.1",
+    "minami": "^1.2.3",
+    "nyc": "^11.7.1"
   }
 }
