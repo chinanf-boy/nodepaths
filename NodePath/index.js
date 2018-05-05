@@ -3,7 +3,7 @@
 'use script'
 const path = require('path')
 const fs = require('fs')
-const { setO } = require('./work-options')
+const { setO, loggerStart, loggerStop } = require('./work-options')
 
 const nodePaths = require('./nodePaths')
 
@@ -47,14 +47,20 @@ Ps.forEach(ps => module.paths.unshift(ps))
 // 计算
 console.time('NodePath:time')
 
+loggerStart("start nodepath .. ")
 
 let filePath = path.resolve(process.cwd(), getFileName)
 // 请求·
 let results = await nodePaths(filePath)
 
+loggerStop("finish nodepath")
+
 console.log(results)
 
 writeDataToFile(results)
+
+
+console.timeEnd('NodePath:time')
 
 
 })()

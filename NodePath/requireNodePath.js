@@ -1,5 +1,6 @@
 const path = require('path')
 const globby = require('globby');
+const { loggerState } = require('./work-options');
 const readFile = require('./readFile')
 const matchModule = require('./match-module')
 
@@ -16,6 +17,7 @@ async function requireNodePath( filePath ){
     let R_results = {}
 
     async function Around(fileP){
+        loggerState(">>> "+ fileP, "yellow")
 
         if(!fileP || fileP.indexOf(NODE_MODULES) >= 0) return
         
@@ -23,14 +25,18 @@ async function requireNodePath( filePath ){
         let matchs = true
 
         if(matchs){
-        
+            
             const fileData = await readFile(fileP).catch(err =>console.error(err))
             
             matchs = matchModule(fileData)
 
             if(matchs.length === 0)return
 
-            R_results[fileP] = []
+            if(!R_results[fileP]){
+                R_results[fileP] = []
+            }else{
+                return // 重复了
+            }
 
             for(let i in matchs){
 
@@ -45,9 +51,11 @@ async function requireNodePath( filePath ){
                     AbsPath = require.resolve(AbsPath)
 
                     if(AbsPath === fileP){
-                        return 
+                        return // 重复了
                     }
                 }catch(err){
+                    // require 不了的其他类型文件
+
                     let AbsPathFile = null
                     // globby 查询有没有相关文件
                     if(err.message !== NATIVE_ERROR){      
@@ -60,9 +68,9 @@ async function requireNodePath( filePath ){
                     }else{
                         AbsPath =  NODE_MODULES
                     }
-
                 }
-                
+
+                // return
                 await Around(AbsPath)
 
 
