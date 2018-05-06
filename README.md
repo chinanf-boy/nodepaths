@@ -31,6 +31,10 @@ process.cwd()+NodePathdata.json
 
 与 ``git`` 版本控制搭配 可观察模块变动。
 
+### 联系
+
+[Path-run](https://github.com/chinanf-boy/Path-run) 重写并更改项目路径
+
 ## 有关思考过程可以查看 
 
 [Doc](https://github.com/chinanf-boy/NodePath/tree/master/Doc)

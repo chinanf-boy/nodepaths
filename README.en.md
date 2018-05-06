@@ -1,56 +1,43 @@
-## JavaScript module structure description
 
-Two patterns based on matching
+## Javascript module structure description
+
+<p align="center"><a href="https://npmjs.com/package/nodepaths"><img src="https://img.shields.io/npm/v/nodepaths.svg?style=for-the-badge" alt="NPM version"></a> 
+<img src="https://img.shields.io/npm/dm/peco.svg?style=for-the-badge" alt="NPM downloads"></a></p>
+
+Based on matching these two modes
 
 ```js
-import React, {Component} from 'react';
+import React, {Component} from 'react'; // > react
 
-const path = require('path')
+const path = require('path') // > path
 ```
 
-## Use
+## use
 
     npm install -g nodepaths
 
-> Function
+> run
 
-    nodepaths filename
-
-Only`JS`Documents,
+    nodepaths [filename]/[Directory] -O [输出目录]
 
 ### Generate a
 
-Under the command run path
+In the command path
 
-    NodePathdata.json
+    process.cwd()+NodePathdata.json
 
-and`Git`Version control collocation can be seen as a module change.
+versus`Git`Version control with observable module changes.
+
+### contact
+
+[Path-run](https://github.com/chinanf-boy/Path-run)Rewrite and change the project path
 
 ## The thinking process can be viewed
 
 [Doc](https://github.com/chinanf-boy/NodePath/tree/master/Doc)
 
-## Clone library
+## Dev
 
-> Function
+> run
 
     node NodePath/index.js demo/test1
-
-> To achieve the purpose of testing
-
--   System command line direct call
-
--   `React`Document issue
-
-
-    因为 document 在 node 没有定义 所以 
-
-    src/index.js 中
-
-    render部分 请注释 以下
-
-## I'm sorry
-
-hold`Try_func`Folder
-
-For changes, try new functions and put them in the main branch.
