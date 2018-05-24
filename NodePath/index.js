@@ -3,6 +3,7 @@
 'use script'
 const path = require('path')
 const fs = require('fs')
+const pkg = require('../package.json')
 const { setO, loggerStart, loggerStop } = require('./work-options')
 
 const nodePaths = require('./nodePaths')
@@ -10,9 +11,24 @@ const nodePaths = require('./nodePaths')
 const {writeDataToFile} = require('./writeDataToFile')
 
 let getFileName = process.argv[2]
-if(!getFileName){
-    console.log(`Usage
-    $ nodepath [file-name] [options]
+
+function hasHelporVer(){
+    let ok = ['-v', '-h']
+    let how = false
+    process.argv.forEach((x, i) =>{
+        if(ok.some(o =>x==o)){
+            how = true
+        }
+    })
+    return how
+}
+
+if(!getFileName || hasHelporVer()){
+    console.log(`
+    >> V${pkg.version}
+
+    Usage
+    $ nodepath [file-name/directory] [options]
 
     - options
         
