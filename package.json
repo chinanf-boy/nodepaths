@@ -1,6 +1,6 @@
 {
   "name": "nodepaths",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "output the path of module js folder",
   "main": "./NodePath/nodePaths.js",
   "scripts": {
