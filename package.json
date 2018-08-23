@@ -20,6 +20,9 @@
     "nodepaths",
     "module"
   ],
+  "files": [
+    "NodePath"
+  ],
   "author": "yobrave",
   "license": "MIT",
   "bugs": {
@@ -31,7 +34,7 @@
     "is-directory": "^0.3.1",
     "mz": "^2.7.0",
     "node-filelist": "^1.0.0",
-    "ora": "^2.1.0"
+    "ora-min": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
